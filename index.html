@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>for u💙 Ultra 2.0</title>
+<style>
+/* BODY + GRADIENT HALUS */
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    overflow:hidden;
+    color:black;
+    background: linear-gradient(-45deg, #d9f1ff, #bfe6ff, #a8d8ff, #cceeff);
+    background-size:400% 400%;
+    animation:bgMove 15s ease infinite;
+}
+@keyframes bgMove{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+/* VISUALIZER */
+#visualizer{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100vh;
+    pointer-events:none;
+    z-index:0;
+}
+
+/* LOVE */
+.love{
+    position:fixed;
+    top:-20px;
+    font-size:24px;
+    animation:jatuh linear infinite;
+    z-index:2;
+    text-shadow:0 0 5px #4da6ff,0 0 15px rgba(77,166,255,0.6);
+}
+@keyframes jatuh{
+    0%{transform:translateY(-20px);}
+    100%{transform:translateY(110vh);}
+}
+
+/* HEART */
+.heart{
+    position:fixed;
+    font-size:16px;
+    opacity:0.8;
+    animation:rise 5s linear forwards;
+    pointer-events:none;
+    z-index:1;
+    text-shadow:0 0 10px #ff6b6b;
+}
+@keyframes rise{
+    0%{transform:translateY(100vh) scale(0.5);}
+    100%{transform:translateY(-50px) scale(1);}
+}
+
+/* OPENING */
+#opening{
+    position:fixed;
+    width:100%;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    z-index:3;
+}
+.openBtn{
+    padding:22px 40px;
+    font-size:26px;
+    background:white;
+    color:#4da6ff;
+    border:none;
+    border-radius:20px;
+    cursor:pointer;
+    box-shadow:0 0 30px rgba(77,166,255,0.7);
+    animation:btnPulse 1s infinite alternate;
+}
+@keyframes btnPulse{
+    0%{transform:scale(1);}
+    100%{transform:scale(1.1);}
+}
+#hand{
+    font-size:50px;
+    position:absolute;
+    bottom:80px;
+    left:50%;
+    transform:translateX(-50%);
+    animation:handMove 1s infinite alternate;
+    z-index:3;
+}
+@keyframes handMove{
+    0%{transform:translateX(-50%) translateY(0);}
+    100%{transform:translateX(-50%) translateY(-10px);}
+}
+
+/* NAMA */
+#nama{
+    position:fixed;
+    top:40%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    font-size:65px;
+    font-weight:bold;
+    color:#4da6ff;
+    text-align:center;
+    text-shadow:0 0 20px rgba(77,166,255,0.9);
+    z-index:3;
+}
+.letter{
+    opacity:0;
+    display:inline-block;
+    animation:muncul 0.5s forwards;
+}
+@keyframes muncul{to{opacity:1;}}
+
+/* MAIN */
+#mainContent{
+    display:none;
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    text-align:center;
+    z-index:3;
+}
+
+/* TITLE */
+h2{
+    font-size:38px;
+    margin-bottom:20px;
+    text-shadow:0 0 25px #4da6ff,0 0 40px rgba(77,166,255,0.6);
+    position:relative;
+    transition:0.5s;
+}
+
+/* FINAL TEXT DI ATAS TITLE */
+#finalText{
+    position:absolute;
+    top:-90px;
+    left:50%;
+    transform:translateX(-50%) scale(0);
+    font-size:54px;
+    font-weight:bold;
+    text-shadow:0 0 35px #4da6ff,0 0 55px rgba(77,166,255,1);
+    transition:0.5s;
+    z-index:4;
+    white-space: nowrap;
+}
+#finalText.show{
+    animation:flashText 0.5s forwards;
+    transform:translateX(-50%) scale(1);
+}
+@keyframes flashText{
+    0%{transform:translateX(-50%) scale(0);}
+    50%{transform:translateX(-50%) scale(1.2);}
+    100%{transform:translateX(-50%) scale(1);}
+}
+
+/* SLIDESHOW */
+.slideshow{
+    width:400px;
+    height:400px;
+    margin:auto;
+    margin-bottom:20px;
+    position:relative;
+    border-radius:30px;
+    overflow:hidden;
+    box-shadow:0 0 40px rgba(77,166,255,0.8);
+    z-index:3;
+}
+.slideshow img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center;
+    position:absolute;
+    top:0;
+    left:0;
+    opacity:0;
+    transition:opacity 1.5s, transform 6s;
+}
+.slideshow img.active{
+    opacity:1;
+    transform:scale(1.15);
+}
+
+/* TEXT */
+#text{
+    font-size:26px;
+    width:400px;
+    margin:auto;
+    margin-bottom:20px;
+    text-shadow:0 0 10px rgba(77,166,255,0.5);
+}
+
+/* BUTTON */
+.btn{
+    padding:18px 32px;
+    font-size:22px;
+    border:none;
+    border-radius:18px;
+    cursor:pointer;
+    animation:btnGlow 1.5s infinite alternate;
+    margin:5px;
+    position:relative;
+}
+#askLove{
+    background:white;
+    color:#4da6ff;
+    box-shadow:0 0 30px rgba(77,166,255,0.7);
+}
+#yes{
+    background:white;
+    color:#4da6ff;
+    box-shadow:0 0 30px rgba(77,166,255,0.7);
+}
+#no{
+    background:#ff6b6b;
+    color:white;
+    box-shadow:0 0 30px rgba(255,107,107,0.7);
+}
+@keyframes btnGlow{
+    0%{box-shadow:0 0 15px rgba(77,166,255,0.5);}
+    100%{box-shadow:0 0 40px rgba(77,166,255,0.9);}
+}
+</style>
+</head>
+<body>
+
+<audio id="musik" loop>
+<source src="audio/wndy.mp3">
+</audio>
+
+<canvas id="visualizer"></canvas>
+
+<div id="opening">
+    <div id="hand">👉</div>
+    <button class="openBtn" onclick="buka()">Klik untuk membuka 💙</button>
+</div>
+
+<div id="nama"></div>
+
+<div id="mainContent">
+    <h2 id="title">for u💙</h2>
+    <div id="finalText"></div>
+    <div class="slideshow">
+        <img src="images/3.jpg" class="active">
+        <img src="images/2.jpg">
+        <img src="images/1.jpg">
+        <img src="images/4.jpg">
+        <img src="images/6.jpg">
+<img src="images/5.jpg">
+<img src="images/7.jpg">
+<img src="images/8.jpg">
+    </div>
+    <div id="text"></div>
+    
+    <!-- tombol awal -->
+    <button id="askLove" class="btn">Kamu sayang aku ga?</button>
+    
+    <!-- tombol pilihan baru -->
+    <div id="loveOptions" style="display:none;">
+        <button id="yes" class="btn">Iya </button>
+        <button id="no" class="btn">Engga </button>
+    </div>
+</div>
+
+<script>
+/* VISUALIZER */
+const audio=document.getElementById("musik");
+const canvas=document.getElementById("visualizer");
+const ctx=canvas.getContext("2d");
+function resizeCanvas(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
+resizeCanvas();
+window.addEventListener("resize",resizeCanvas);
+const audioCtx=new (window.AudioContext||window.webkitAudioContext)();
+const source=audioCtx.createMediaElementSource(audio);
+const analyser=audioCtx.createAnalyser();
+source.connect(analyser);
+analyser.connect(audioCtx.destination);
+analyser.fftSize=256;
+const bufferLength=analyser.frequencyBinCount;
+const dataArray=new Uint8Array(bufferLength);
+function drawVisualizer(){
+    requestAnimationFrame(drawVisualizer);
+    analyser.getByteFrequencyData(dataArray);
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    const barWidth=(canvas.width/bufferLength)*2.5;
+    let x=0;
+    for(let i=0;i<bufferLength;i++){
+        const barHeight=dataArray[i];
+        ctx.fillStyle=`rgba(77,166,255,${0.3+barHeight/512})`;
+        ctx.fillRect(x,canvas.height-barHeight,barWidth,barHeight);
+        x+=barWidth+1;
+    }
+}
+drawVisualizer();
+
+/* LOVE */
+function createLove(){let love=document.createElement("div");love.innerHTML="💙";love.className="love";love.style.left=Math.random()*100+"vw";love.style.animationDuration=(Math.random()*3+5)+"s";document.body.appendChild(love);setTimeout(()=>love.remove(),8000);}
+let loveInterval;
+function startLove(){loveInterval=setInterval(createLove,300);}
+
+/* HEART */
+function createHeart(){let heart=document.createElement("div");heart.innerHTML="💖";heart.className="heart";heart.style.left=Math.random()*100+"vw";heart.style.fontSize=(10+Math.random()*15)+"px";document.body.appendChild(heart);setTimeout(()=>heart.remove(),5000);}
+setInterval(createHeart,300);
+
+/* NAMA */
+let namaText="ABY ARYUDAA";
+let namaDiv=document.getElementById("nama");
+function tampilNama(callback){
+    namaDiv.innerHTML="";
+    namaText.split("").forEach((huruf,i)=>{
+        let span=document.createElement("span");
+        if(huruf===" "){span.innerHTML="&nbsp;";}
+        else{span.textContent=huruf;}
+        span.className="letter";
+        span.style.animationDelay=(i*0.15)+"s";
+        namaDiv.appendChild(span);
+    });
+    setTimeout(()=>{if(callback)callback();namaDiv.style.display="none";},namaText.length*150+500);
+}
+
+/* OPEN */
+function buka(){
+    opening.style.display="none";
+    if(audioCtx.state==='suspended'){audioCtx.resume();}
+    musik.play();
+    document.getElementById("hand").style.display="none";
+    tampilNama(function(){mainContent.style.display="block";i=0;typeText();startLove();});
+}
+
+/* SLIDESHOW */
+let slides=document.querySelectorAll(".slideshow img");
+let index=0;
+function showSlide(){slides.forEach(s=>s.classList.remove("active"));slides[index].classList.add("active");index++;if(index>=slides.length)index=0;}
+setInterval(showSlide,3000);
+
+/* TEXT */
+let message="Belii karett dii warungg sii ayuuu, i will never be tired of loving u💙";
+let i=0;
+function typeText(){if(i<message.length){text.innerHTML+=message.charAt(i);i++;setTimeout(typeText,50);}}
+
+/* TOMBOL AWAL MENAMPILKAN PILIHAN */
+const askLove = document.getElementById("askLove");
+const loveOptions = document.getElementById("loveOptions");
+const yesBtn = document.getElementById("yes");
+const noBtn = document.getElementById("no");
+const finalText = document.getElementById("finalText");
+
+askLove.onclick = function() {
+    askLove.style.display = "none";
+    loveOptions.style.display = "block";
+}
+
+// Tombol Iya
+yesBtn.onclick = function() {
+    finalText.classList.add("show");
+    finalText.innerHTML = "I LOVE YOU ";
+    text.innerHTML = "dh tw si, kau kn kecintaan sm ak";
+}
+
+// Tombol Engga (tidak lari)
+noBtn.onclick = function() {
+    finalText.classList.add("show");
+    finalText.innerHTML = "PAKYU ";
+    text.innerHTML = "semoga pantat kau tumbuh sawit.";
+}
+</script>
+
+</body>
+</html>
